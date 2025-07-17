@@ -64,8 +64,8 @@ header {
 }
 
 .circular-logo {
-  width: 80px;
-  height: 80px;
+  width: 65px;
+  height: 65px;
   border-radius: 30%; 
   border: 2px solid var(--light-orange);
   object-fit: cover;
