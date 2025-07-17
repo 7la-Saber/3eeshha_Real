@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+        :root {
+            --light-orange: #fcbfa3;
+            --pastel-red: #f7907f;
+            --very-light-orange: #f3e1d2;
+            --gray-azure: #466988;
+            --orange: #dd6843;
+            --shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            background: var(--very-light-orange);
+            color: var(--gray-azure);
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header nav a {
+            margin: 0 10px;
+            color: var(--gray-azure);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: var(--light-orange);
+            color: var(--gray-azure);
+            border-radius: 0 0 40px 40px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+        }
+
+        main {
+            padding: 60px 20px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        section {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        section h2 {
+            color: var(--orange);
+            margin-bottom: 20px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin-top: 30px;
+        }
+
+        .team-member {
+            background: var(--very-light-orange);
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-member h4 {
+            color: var(--orange);
+            margin-bottom: 10px;
+        }
+
+        .team-member p {
+            color: var(--gray-azure);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.95rem;
+            color: var(--gray-azure);
+            margin-top: 60px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="fixed-nav">
+        <img src="assets/images/main_logo.png" alt="Logo" class="circular-logo" />
+        <nav>
+            <a href="about.html" style="color: var(--color-accent); font-weight: bold;">About</a>
+            <a href="index.html">Home</a>
+            <a href="tips.html">Tips</a>
+            <a href="challenges.html">Challenges</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="play.html">Play</a>
+            <a href="blog.html">Blog</a>
+            <a href="post-pressure.html">Post-Pressure</a>
+            <a href="scroll-tracker.html">Scroll Tracker</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h1>About Us</h1>
+        <p><strong>وقتك الحقيقي اهم من اللايكس</strong><br>"Your real time is far more valuable than likes"</p>
+    </div>
+
+    <main>
+        <section>
+            <h2>🌱 Our Mission</h2>
+            <p>To help people reconnect with peace, purpose, and presence by escaping social media stress and killing
+                the insecurities that social media creates.</p>
+        </section>
+
+        <section>
+            <h2>📖 The Story Behind It</h2>
+            <p>This project was born out of the DECI (Digital Egypt Cubs Initiative) summer bootcamp. We were challenged
+                to choose a digital-era problem and build something to solve it.</p>
+            <p>We saw how many people (especially teens) were suffering from anxiety, comparison, and loss of focus due
+                to social media overload. So we chose to tackle the <strong>serious issue of digital stress</strong> and
+                rebuild digital life with intention.</p>
+        </section>
+
+        <section>
+            <h2>🧑‍🤝‍🧑 Meet the Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <h4>Hla Saber</h4>
+                    <p>Web Developer – Built the full platform and presented it with the team.</p>
+                </div>
+                <div class="team-member">
+                    <h4>Youssef Abbas</h4>
+                    <p>Web Developer – Coded the interface and presented part of the solution live.</p>
+                </div>
+                <div class="team-member">
+                    <h4>Lara Ali</h4>
+                    <p>Digital Artist – Crafted the visual identity and design aesthetics.</p>
+                </div>
+                <div class="team-member">
+                    <h4>Malak Moussa</h4>
+                    <p>Data Science – Brought great ideas and helped us present with confidence.</p>
+                </div>
+                <div class="team-member">
+                    <h4>Retal Abd-Elsalam</h4>
+                    <p>Data Science – Helped shape our ideas and supported the group during the final pitch.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>🌈 Vision for the Future</h2>
+            <p>“We dream of a world where less scrolling = more joy.”<br>We want to scale this into a movement. A
+                mindset shift that says: you don't have to be online all the time to be seen, loved, or valued.</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-left">
+            <strong>Real عيشها</strong>
+            <small>Are You Digitally Stressed?</small>
+        </div>
+
+        <div class="footer-menu">
+            <a href="#">Home</a>
+            <a href="#">Explore</a>
+            <a href="#">Contact</a>
+        </div>
+
+        <div>
+            <div class="socials">
+                <button><i class="fab fa-facebook-f"></i></button>
+                <button><i class="fab fa-instagram"></i></button>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p>Discover our app</p>
+            <div class="store-links">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                    alt="Google Play">
+                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+                    alt="App Store">
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            All rights reserved @3esha_Real.co
+        </div>
+    </footer>
+
+</body>
+
+</html>

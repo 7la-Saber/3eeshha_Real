@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tips</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header class="fixed-nav">
+        <img src="assets/images/main_logo.png" alt="Logo" class="circular-logo" />
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="tips.html" style="color: var(--color-accent); font-weight: bold;">Tips</a>
+            <a href="challenges.html">Challenges</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="play.html">Play</a>
+            <a href="blog.html">Blog</a>
+            <a href="post-pressure.html">Post-Pressure</a>
+            <a href="scroll-tracker.html">Scroll Tracker</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <p class="tagline">Helpful Advice</p>
+        <h1>Tips to Recharge and Reconnect</h1>
+        <p>From instant relief to long-term change .. we’ve got what your mind needs.</p>
+    </section>
+    <style>
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 60px 8%;
+            margin-top: 40px;
+        }
+
+        .tip-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(18px);
+            transition: all 0.3s ease;
+            position: relative;
+            color: #fff;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .tip-card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #ffffff;
+        }
+
+        .tip-card p {
+            font-size: 17px;
+            line-height: 1.8;
+            color: #f5f5f5;
+        }
+
+        .tip-card .bookmark {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.4));
+        }
+
+        .tip-card .bookmark:hover {
+            transform: scale(1.2);
+        }
+
+        /* Optional Pastel Glow by Category */
+        .tip-card[data-type="quick"] {
+            background: linear-gradient(135deg, #4f7cac88, #46698866);
+        }
+
+        .tip-card[data-type="lifestyle"] {
+            background: linear-gradient(135deg, #6c55948f, #eec0c68f);
+        }
+
+        .tip-card[data-type="apps"] {
+            background: linear-gradient(135deg, #1d2a3d9a, #5eaaa87a);
+        }
+
+        .tip-card[data-type="fun"] {
+            background: linear-gradient(135deg, #754a338f, #6d58068a);
+        }
+
+        .filters button {
+            transition: all 0.3s ease;
+        }
+
+        .filters button:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Extra margin to hero section */
+        .hero {
+            margin-top: 10px;
+            text-align: center;
+            padding: 60px 8%;
+        }
+
+        /* filters section */
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 40px 0 10px;
+            padding: 0 8%;
+        }
+
+        .filters button {
+            padding: 12px 22px;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #f3e1d2, #f3e1d2);
+            color: #dd700a;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1), 0 4px 14px rgba(0, 0, 0, 0.2);
+            transition: all 0.25s ease;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .filters button:hover,
+        .filters button.active {
+            background: linear-gradient(135deg, #f3e1d2, #f3e1d2);
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+
+
+        /* Tip cards spacing update */
+        .tips-grid {
+            padding: 80px 8%;
+            margin-top: 0;
+            row-gap: 3rem;
+            column-gap: 2rem;
+        }
+    </style>
+    <!-- Tip Filters -->
+    <section class="filters">
+        <button class="active" onclick="filterTips('all')">✨ All</button>
+        <button onclick="filterTips('quick')">✅ Quick Fixes</button>
+        <button onclick="filterTips('lifestyle')">🌀 Lifestyle Changes</button>
+        <button onclick="filterTips('apps')">📱 Apps That Help</button>
+        <button onclick="filterTips('fun')">🎉 Phone-Free Fun</button>
+    </section>
+
+    <section class="tips-grid" id="tipsGrid">
+        <div class="tip-card" data-type="quick" style="background: linear-gradient(135deg, #A1C4FD, #C2E9FB);">
+            <h3>✅ DND Mode</h3>
+            <p>Put your phone on Do Not Disturb for 15 minutes and enjoy uninterrupted peace.</p>
+        </div>
+
+        <div class="tip-card" data-type="quick" style="background: linear-gradient(135deg, #FCE38A, #F38181);">
+            <h3>✅ Set Phone-Free Zones</h3>
+            <p>No phones at the dinner table or during family time. Be fully present.</p>
+        </div>
+
+        <div class="tip-card" data-type="lifestyle" style="background: linear-gradient(135deg, #A18CD1, #FBC2EB);">
+            <h3>🌀 No Phone in Bed</h3>
+            <p>Leave your phone in another room at bedtime. Let your brain fully rest.</p>
+        </div>
+
+        <div class="tip-card" data-type="lifestyle" style="background: linear-gradient(135deg, #F6D365, #FDA085);">
+            <h3>🌀 Morning Routine Without Scrolling</h3>
+            <p>Start your day with stretching, journaling, or breakfast instead of screen time.</p>
+        </div>
+
+        <div class="tip-card" data-type="lifestyle" style="background: linear-gradient(135deg, #84FAB0, #8FD3F4);">
+            <h3>🌀 Real Conversations</h3>
+            <p>Call or talk to a friend face-to-face instead of chatting through messages.</p>
+        </div>
+
+        <div class="tip-card" data-type="apps" style="background: linear-gradient(135deg, #D299C2, #F6F0C4);">
+            <h3>📱 Try “Forest”</h3>
+            <p>This app helps you focus by growing a virtual tree while staying off your phone.</p>
+        </div>
+
+        <div class="tip-card" data-type="apps" style="background: linear-gradient(135deg, #FDCB82, #FFA69E);">
+            <h3>📱 StayFree App</h3>
+            <p>Track your screen time and set limits for apps that drain your focus.</p>
+        </div>
+
+        <div class="tip-card" data-type="apps" style="background: linear-gradient(135deg, #C9FFBF, #FFAFBD);">
+            <h3>📱 Daylio Journal</h3>
+            <p>Track your mood and habits. Understand patterns and take control of your screen use.</p>
+        </div>
+
+        <div class="tip-card" data-type="fun" style="background: linear-gradient(135deg, #A0E7E5, #B4F8C8);">
+            <h3>🎉 Go for a Walk</h3>
+            <p>Get outside for just 10 minutes. Fresh air resets your whole vibe.</p>
+        </div>
+
+        <div class="tip-card" data-type="fun" style="background: linear-gradient(135deg, #FF9A9E, #FAD0C4);">
+            <h3>🎉 Play Music</h3>
+            <p>Dance in your room or hum along while you work. Music is a real mental reset.</p>
+        </div>
+
+        <div class="tip-card" data-type="fun" style="background: linear-gradient(135deg, #FDCB82, #A1C4FD);">
+            <h3>🎉 Try a Hobby Box</h3>
+            <p>Create a small box with art supplies, puzzles, or craft ideas – grab it when you're bored.</p>
+        </div>
+
+        <div class="tip-card" data-type="fun" style="background: linear-gradient(135deg, #FEE140, #FA709A);">
+            <h3>🎉 Write a Letter</h3>
+            <p>Old-school but sweet. Write a note to someone you love – or your future self.</p>
+        </div>
+    </section>
+
+
+
+    <footer>
+        <div class="footer-left">
+            <strong>Real عيشها</strong>
+            <small>Are You Digitally Stressed?</small>
+        </div>
+
+        <div class="footer-menu">
+            <a href="#">Home</a>
+            <a href="#">Explore</a>
+            <a href="#">Contact</a>
+        </div>
+
+        <div>
+            <div class="socials">
+                <button><i class="fab fa-facebook-f"></i></button>
+                <button><i class="fab fa-instagram"></i></button>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p>Discover our app</p>
+            <div class="store-links">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                    alt="Google Play">
+                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+                    alt="App Store">
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            All rights reserved @3esha_Real.co
+        </div>
+    </footer>
+    <script>
+        function filterTips(type) {
+            document.querySelectorAll('.filters button').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            document.querySelectorAll('.tip-card').forEach(card => {
+                const show = (type === 'all' || card.dataset.type === type);
+                card.style.display = show ? 'block' : 'none';
+            });
+        }
+    </script>
+
+</body>
+
+</html>

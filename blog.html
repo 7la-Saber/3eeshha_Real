@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real Stories Blog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--very-light-orange);
+            margin: 0;
+            padding: 0;
+        }
+
+        .blog-form,
+        .expert-tips,
+        .funny-section {
+            max-width: 900px;
+            margin: 40px auto;
+            background: var(--color-glass-bg);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(20px);
+        }
+
+        .blog-form input,
+        .blog-form textarea,
+        .blog-form select {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            background: var(--very-light-orange);
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .blog-form button {
+            padding: 14px 24px;
+            border: none;
+            border-radius: 12px;
+            background: var(--orange);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .anon-toggle {
+            margin: 10px 0;
+            font-size: 0.95rem;
+        }
+
+        .filters {
+            max-width: 900px;
+            margin: 20px auto;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filters input,
+        .filters select {
+            padding: 10px 16px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+        }
+
+        .blog-card {
+            background: var(--f3e1d2);
+            padding: 24px;
+            margin: 20px auto;
+            border-left: 8px solid var(--pastel-red);
+            border-radius: 20px;
+            max-width: 900px;
+            box-shadow: var(--shadow);
+        }
+
+        .blog-card h2 {
+            margin: 0 0 5px;
+            color: var(--brownish-red);
+        }
+
+        .blog-card .meta {
+            font-size: 0.9rem;
+            color: gray;
+            margin-bottom: 10px;
+        }
+
+        .blog-card .rating span {
+            font-size: 1.4rem;
+            cursor: pointer;
+            color: #ccc;
+        }
+
+        .blog-card .rating span.active {
+            color: gold;
+        }
+
+        .like-btn {
+            background: transparent;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .comments {
+            margin-top: 15px;
+        }
+
+        .comments textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+        }
+
+        .comments button {
+            margin-top: 5px;
+            padding: 8px 16px;
+            background: var(--orange);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .comment-list {
+            margin-top: 10px;
+            background: #fff5ee;
+            padding: 10px;
+            border-radius: 12px;
+        }
+
+        .comment-item {
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="fixed-nav">
+        <img src="assets/images/main_logo.png" alt="Logo" class="circular-logo" />
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="tips.html">Tips</a>
+            <a href="challenges.html">Challenges</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="play.html">Play</a>
+            <a href="blog.html" style="color: var(--color-accent); font-weight: bold;">Blog</a>
+            <a href="post-pressure.html">Post-Pressure</a>
+            <a href="scroll-tracker.html">Scroll Tracker</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <p class="tagline">Your Voice, Your Power</p>
+        <h1>Real Stories Blog</h1>
+        <p>Normalize digital stress. Connect through truth, laughs, and expert advice.</p>
+    </section>
+
+    <form class="blog-form" id="blogForm">
+        <h2 style="color: var(--brownish-red);">✍️ Share Your Story</h2>
+        <input type="text" id="title" placeholder="Title of Your Story" required />
+        <textarea id="content" placeholder="Write your story..." rows="5" required></textarea>
+        <select id="category">
+            <option value="General">Choose Category</option>
+            <option value="Stress">Stress</option>
+            <option value="Success">Success</option>
+            <option value="Funny">Funny</option>
+        </select>
+        <label class="anon-toggle">
+            <input type="checkbox" id="anonCheckbox" /> Post Anonymously
+        </label>
+        <button type="submit">Post My Blog</button>
+    </form>
+
+    <!-- Filters -->
+    <div class="filters">
+        <input type="date" id="dateFilter" />
+        <select id="categoryFilter">
+            <option value="">All Categories</option>
+            <option value="Stress">Stress</option>
+            <option value="Success">Success</option>
+            <option value="Funny">Funny</option>
+        </select>
+    </div>
+
+    <!-- Posts -->
+    <div id="blogContainer"></div>
+
+
+    <section class="expert-tips">
+        <h3>🧠 Expert Tips</h3>
+        <div class="tip"><strong>Dr. Maya:</strong> Take 10-minute tech breaks every hour to reset your brain.</div>
+        <div class="tip"><strong>Coach Rami:</strong> Silence notifications during study time. Protect your focus.</div>
+        <div class="tip"><strong>Ms. Amal:</strong> Don’t feel guilty for unplugging. You’re reclaiming peace.</div>
+    </section>
+
+    <section class="funny-section">
+        <h3>😂 Instagram vs Reality</h3>
+        <div class="funny">
+            <img src="assets/images/hike.jpg" alt="Nature walk scenery with phone" style="height: 400px;" />
+            <p><strong>Caption:</strong> “Expectation: Peaceful hike 🌲 / Reality: Spotty signal & sweaty gear 😅”</p>
+        </div>
+    </section>
+
+
+
+    <footer>
+        <div class="footer-left">
+            <strong>Real عيشها</strong>
+            <small>Are You Digitally Stressed?</small>
+        </div>
+
+        <div class="footer-menu">
+            <a href="#">Home</a>
+            <a href="#">Explore</a>
+            <a href="#">Contact</a>
+        </div>
+
+        <div>
+            <div class="socials">
+                <button><i class="fab fa-facebook-f"></i></button>
+                <button><i class="fab fa-instagram"></i></button>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p>Discover our app</p>
+            <div class="store-links">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                    alt="Google Play">
+                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+                    alt="App Store">
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            All rights reserved @3esha_Real.co
+        </div>
+    </footer>
+
+    <script>
+        const form = document.getElementById('blogForm');
+        const blogContainer = document.getElementById('blogContainer');
+        const dateFilter = document.getElementById('dateFilter');
+        const categoryFilter = document.getElementById('categoryFilter');
+
+        let posts = [];
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const title = document.getElementById('title').value;
+            const content = document.getElementById('content').value;
+            const anon = document.getElementById('anonCheckbox').checked;
+            const category = document.getElementById('category').value;
+            const author = anon ? "Anonymous" : "Teen Voice";
+            const date = new Date().toISOString().split('T')[0];
+
+            const post = {
+                title,
+                content,
+                author,
+                category,
+                date,
+                likes: 0,
+                comments: [],
+                stars: 0
+            };
+
+            posts.unshift(post);
+            form.reset();
+            renderPosts();
+        });
+
+        function renderPosts() {
+            blogContainer.innerHTML = '';
+            let filtered = posts;
+
+            if (dateFilter.value) {
+                filtered = filtered.filter(p => p.date === dateFilter.value);
+            }
+            if (categoryFilter.value) {
+                filtered = filtered.filter(p => p.category === categoryFilter.value);
+            }
+
+            filtered.forEach((post, idx) => {
+                const card = document.createElement('div');
+                card.className = 'blog-card';
+                card.innerHTML = `
+          <h2>${post.title}</h2>
+          <div class="meta">${post.author} • ${post.date} • <em>${post.category}</em></div>
+          <p>${post.content}</p>
+          <div class="rating" id="stars-${idx}">
+            ${[...Array(5)].map((_, i) =>
+                    `<span onclick="ratePost(${idx}, ${i})" class="${i < post.stars ? 'active' : ''}">⭐</span>`
+                ).join('')}
+          </div>
+          <button class="like-btn" onclick="likePost(${idx})">👏 Clap (${post.likes})</button>
+          <div class="comments">
+            <textarea id="comment-${idx}" placeholder="Leave a comment..."></textarea>
+            <button onclick="addComment(${idx})">Post</button>
+            <div class="comment-list">
+              ${post.comments.map(c => `<div class="comment-item">🗨️ ${c}</div>`).join('')}
+            </div>
+          </div>
+        `;
+                blogContainer.appendChild(card);
+            });
+        }
+
+        function likePost(i) {
+            posts[i].likes++;
+            renderPosts();
+        }
+
+        function ratePost(postIndex, starIndex) {
+            posts[postIndex].stars = starIndex + 1;
+            renderPosts();
+        }
+
+        function addComment(index) {
+            const textarea = document.getElementById(`comment-${index}`);
+            if (textarea.value.trim()) {
+                posts[index].comments.push(textarea.value.trim());
+                textarea.value = '';
+                renderPosts();
+            }
+        }
+
+
+        window.addEventListener('DOMContentLoaded', () => {
+            posts = [
+                { title: "WiFi Went Out", content: "Ended up drawing for 3 hours.", author: "Teen Voice", category: "Stress", date: "2025-07-14", likes: 2, comments: [], stars: 4 },
+                { title: "Digital Detox Day", content: "No phone for 24h, I felt alive!", author: "Anonymous", category: "Success", date: "2025-07-13", likes: 5, comments: ["👏 Amazing!"], stars: 5 },
+                { title: "Exam Burnout", content: "I deleted Instagram during finals. Life saver.", author: "Teen Voice", category: "Stress", date: "2025-07-12", likes: 3, comments: [], stars: 3 },
+                { title: "Family Game Night", content: "Played cards instead of scrolling.", author: "Anonymous", category: "Funny", date: "2025-07-10", likes: 4, comments: [], stars: 5 },
+                { title: "Silent Dinner", content: "We all stared at our phones… until dad made us talk.", author: "Teen Voice", category: "Funny", date: "2025-07-08", likes: 6, comments: ["😂 relatable"], stars: 4 },
+                { title: "Nature Saved Me", content: "Walking daily helped my anxiety.", author: "Anonymous", category: "Success", date: "2025-07-06", likes: 7, comments: ["💚"], stars: 5 },
+            ];
+            renderPosts();
+        });
+
+        dateFilter.addEventListener('input', renderPosts);
+        categoryFilter.addEventListener('change', renderPosts);
+    </script>
+</body>
+
+</html>

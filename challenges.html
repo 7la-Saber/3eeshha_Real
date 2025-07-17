@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Challenges – Real 3eesha</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+        .challenge-card {
+            background: var(--color-glass-bg);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(16px);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .challenge-card.completed {
+            background: linear-gradient(to right, #d7ffd9, #c1f1c7);
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+            opacity: 0.8;
+        }
+
+        .challenge-card:hover {
+            transform: scale(1.02);
+        }
+
+        .progress-bar {
+            margin-top: 30px;
+            background: #eee;
+            height: 18px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #77dd77, #4caf50);
+            transition: width 0.5s ease-in-out;
+        }
+
+        .points-counter,
+        .streak-badge {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .badge.gold {
+            background: gold;
+            color: black;
+        }
+
+        .badge.silver {
+            background: silver;
+            color: black;
+        }
+
+        .badge.bronze {
+            background: #cd7f32;
+            color: white;
+        }
+
+        .mark-btn {
+            margin-top: 20px;
+            background: #4caf50;
+            color: white;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--color-action);
+            color: white;
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(to bottom, #333, #111);
+            color: #eee;
+        }
+
+        body.dark-mode .challenge-card {
+            background: rgba(255, 255, 255, 0.08);
+        }
+    </style>
+</head>
+
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+
+    <header class="fixed-nav">
+        <img src="assets/images/main_logo.png" alt="Logo" class="circular-logo" />
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="tips.html">Tips</a>
+            <a href="challenges.html" style="color: var(--color-accent); font-weight: bold;">Challenges</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="play.html">Play</a>
+            <a href="blog.html">Blog</a>
+            <a href="post-pressure.html">Post-Pressure</a>
+            <a href="scroll-tracker.html">Scroll Tracker</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <img src="https://www.svgrepo.com/show/522788/leaf-2.svg" class="hero-decor" alt="decor shape">
+        <p class="tagline">Offline Fun & Growth</p>
+        <h1>Complete & Track Real-Life Challenges</h1>
+        <p style="font-size: 1.2rem; color: var(--text-muted); margin-top: 20px;">
+            Bond, grow, and unplug. Real fun. Real moments. Real عيشها .
+        </p>
+    </section>
+
+    <div class="points-counter">Total Points: <span id="points">0</span></div>
+    <div class="streak-badge" id="badge">🏅 Badge: <span class="badge bronze">Bronze</span></div>
+
+    <main style="padding: 50px 80px; max-width: 1200px; margin: auto;">
+        <div id="challenge-list"
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+            <!-- ✅ 21 Challenges -->
+            <div class="challenge-card" data-points="5">
+                <h3>Compliment Bomb 💣</h3>
+                <p>Send 10 compliments in 5 min!</p><button class="mark-btn" onclick="markCompleted(this)">Mark as
+                    Done</button>
+            </div>
+            <div class="challenge-card" data-points="4">
+                <h3>Memory Lane 🛤️</h3>
+                <p>Describe 5 memories vaguely & guess!</p><button class="mark-btn" onclick="markCompleted(this)">Mark
+                    as Done</button>
+            </div>
+            <div class="challenge-card" data-points="3">
+                <h3>Draw Challenge ✍️</h3>
+                <p>Draw each other and explain over a call!</p><button class="mark-btn"
+                    onclick="markCompleted(this)">Mark as Done</button>
+            </div>
+            <div class="challenge-card" data-points="2">
+                <h3>Silent Stare 🤐</h3>
+                <p>Call without talking. First to laugh loses!</p><button class="mark-btn"
+                    onclick="markCompleted(this)">Mark as Done</button>
+            </div>
+            <div class="challenge-card" data-points="5">
+                <h3>Paper Letter ✉️</h3>
+                <p>Write a real letter and hide it in their bag.</p><button class="mark-btn"
+                    onclick="markCompleted(this)">Mark as Done</button>
+            </div>
+            <div class="challenge-card" data-points="6">
+                <h3>Digital Detox 📵</h3>
+                <p>Spend 2 hours together with phones off.</p><button class="mark-btn"
+                    onclick="markCompleted(this)">Mark as Done</button>
+            </div>
+            <div class="challenge-card" data-points="3">
+                <h3>Gratitude Jar 🎁</h3>
+                <p>Write 3 things you're grateful for and read them.</p><button class="mark-btn"
+                    onclick="markCompleted(this)">Mark as Done</button>
+            </div>
+            <div class="challenge-card" data-points="4">
+                <h3>Gift Swap 🎁</h3>
+                <p>Surprise each other with handmade or tiny gifts.</p><button class="mark-btn"
+                    onclick="markCompleted(this)">Mark as Done</button>
+            </div>
+            <div class="challenge-card" data-points="5">
+                <h3>Nature Walk 🌳</h3>
+                <p>Walk 20 minutes in nature without tech.</p><button class="mark-btn"
+                    onclick="markCompleted(this)">Mark as Done</button>
+            </div>
+            <div class="challenge-card" data-points="4">
+                <h3>30-Min Hobby 🎨</h3>
+                <p>Spend 30 min doing a creative offline hobby.</p><button class="mark-btn"
+                    onclick="markCompleted(this)">Mark as Done</button>
+            </div>
+            <div class="challenge-card" data-points="3">
+                <h3>Old-School Call ☎️</h3>
+                <p>Call someone you haven't spoken to in 6+ months.</p><button class="mark-btn"
+                    onclick="markCompleted(this)">Mark as Done</button>
+            </div>
+            <div class="challenge-card" data-points="2">
+                <h3>Story Swap 📚</h3>
+                <p>Tell each other funny stories from childhood.</p><button class="mark-btn"
+                    onclick="markCompleted(this)">Mark as Done</button>
+            </div>
+            <div class="challenge-card" data-points="4">
+                <h3>Photo Album 📸</h3>
+                <p>Create a mini scrapbook or album offline.</p><button class="mark-btn"
+                    onclick="markCompleted(this)">Mark as Done</button>
+            </div>
+            <div class="challenge-card" data-points="5">
+                <h3>Recipe Share 🍳</h3>
+                <p>Cook a recipe and share the experience.</p><button class="mark-btn"
+                    onclick="markCompleted(this)">Mark as Done</button>
+            </div>
+            <div class="challenge-card" data-points="3">
+                <h3>Time Capsule ⏳</h3>
+                <p>Create a box with notes & objects to open in a year.</p><button class="mark-btn"
+                    onclick="markCompleted(this)">Mark as Done</button>
+            </div>
+            <div class="challenge-card" data-points="6">
+                <h3>Books & Blanket 📖</h3>
+                <p>Read books together offline for 30 min.</p><button class="mark-btn"
+                    onclick="markCompleted(this)">Mark as Done</button>
+            </div>
+            <div class="challenge-card" data-points="4">
+                <h3>Star Gazing 🌌</h3>
+                <p>Go outside and stare at stars for 15 mins.</p><button class="mark-btn"
+                    onclick="markCompleted(this)">Mark as Done</button>
+            </div>
+            <div class="challenge-card" data-points="3">
+                <h3>Treasure Hunt 🔍</h3>
+                <p>Hide something and draw a treasure map.</p><button class="mark-btn"
+                    onclick="markCompleted(this)">Mark as Done</button>
+            </div>
+            <div class="challenge-card" data-points="5">
+                <h3>Kindness Chain 💗</h3>
+                <p>Do 3 acts of kindness offline today.</p><button class="mark-btn" onclick="markCompleted(this)">Mark
+                    as Done</button>
+            </div>
+            <div class="challenge-card" data-points="4">
+                <h3>Offline Bucket List 📝</h3>
+                <p>Write 10 things to try offline this year.</p><button class="mark-btn"
+                    onclick="markCompleted(this)">Mark as Done</button>
+            </div>
+            <div class="challenge-card" data-points="6">
+                <h3>Mindful Morning ☀️</h3>
+                <p>Start your day without any device for 1 hour.</p><button class="mark-btn"
+                    onclick="markCompleted(this)">Mark as Done</button>
+            </div>
+            <div class="challenge-card" data-points="2">
+                <h3>Listen & Reflect 🎧</h3>
+                <p>Share a personal story and truly listen without reply.</p><button class="mark-btn"
+                    onclick="markCompleted(this)">Mark as Done</button>
+            </div>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-bar"></div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-left">
+            <strong>Real عيشها</strong>
+            <small>Disconnect to Reconnect</small>
+        </div>
+        <div class="footer-menu">
+            <a href="index.html">Home</a>
+            <a href="tips.html">Tips</a>
+            <a href="challenges.html">Challenges</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="socials">
+            <button><i class="fab fa-facebook-f"></i></button>
+            <button><i class="fab fa-instagram"></i></button>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+        <div class="footer-bottom">
+            All rights reserved @3esha_Real.co
+        </div>
+    </footer>
+
+    <script>
+        let totalPoints = 0;
+        const cards = document.querySelectorAll('.challenge-card');
+        const maxPoints = Array.from(cards).reduce((sum, card) => sum + parseInt(card.dataset.points), 0);
+        const todayKey = '3eesha-today';
+        const pointsKey = '3eesha-points';
+
+
+        function checkDailyReset() {
+            const today = new Date().toLocaleDateString();
+            const lastSavedDate = localStorage.getItem(todayKey);
+
+            if (lastSavedDate !== today) {
+                localStorage.setItem(todayKey, today);
+                localStorage.setItem(pointsKey, '0');
+                resetChallenges();
+            } else {
+                const savedPoints = parseInt(localStorage.getItem(pointsKey)) || 0;
+                totalPoints = savedPoints;
+                document.getElementById('points').textContent = totalPoints;
+                updateProgress();
+            }
+        }
+
+        function resetChallenges() {
+            totalPoints = 0;
+            document.getElementById('points').textContent = '0';
+            document.getElementById('progress-bar').style.width = '0%';
+            document.getElementById('badge').innerHTML = '🏅 Badge: <span class="badge bronze">Bronze</span>';
+
+            cards.forEach(card => {
+                card.classList.remove('completed');
+                const btn = card.querySelector('.mark-btn');
+                if (btn) btn.disabled = false;
+            });
+        }
+
+        function markCompleted(button) {
+            const card = button.closest('.challenge-card');
+            if (!card.classList.contains('completed')) {
+                const pts = parseInt(card.dataset.points);
+                totalPoints += pts;
+                localStorage.setItem(pointsKey, totalPoints);
+                card.classList.add('completed');
+                button.disabled = true;
+                updateProgress();
+            }
+        }
+
+        function updateProgress() {
+            document.getElementById('points').textContent = totalPoints;
+            const fill = (totalPoints / maxPoints) * 100;
+            document.getElementById('progress-bar').style.width = fill + "%";
+
+            const badge = document.getElementById('badge');
+            if (totalPoints >= maxPoints * 0.9) {
+                badge.innerHTML = '🏅 Badge: <span class="badge gold">Gold</span>';
+            } else if (totalPoints >= maxPoints * 0.6) {
+                badge.innerHTML = '🏅 Badge: <span class="badge silver">Silver</span>';
+            } else if (totalPoints >= 1) {
+                badge.innerHTML = '🏅 Badge: <span class="badge bronze">Bronze</span>';
+            } else {
+                badge.innerHTML = '🏅 Badge: <span class="badge bronze">Bronze</span>';
+            }
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+
+        window.onload = checkDailyReset;
+    </script>
+
+</body>
+
+</html>

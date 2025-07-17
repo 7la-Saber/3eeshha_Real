@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Stress Quiz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+        :root {
+            --light-orange: #fcbfa3;
+            --very-light-orange: #f3e1d2;
+            --gray-azure: #466988;
+            --orange: #dd6843;
+            --shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--very-light-orange);
+            margin: 0;
+            padding: 0;
+        }
+
+        .quiz-container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: rgba(255, 255, 255, 0.3);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--orange);
+            margin-bottom: 30px;
+        }
+
+        .question {
+            margin-bottom: 30px;
+        }
+
+        .question h3 {
+            color: var(--gray-azure);
+            margin-bottom: 10px;
+        }
+
+        .question label {
+            display: block;
+            background: var(--very-light-orange);
+            padding: 12px;
+            margin-bottom: 8px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .question label:hover {
+            background: var(--light-orange);
+        }
+
+        .submit-btn,
+        .reset-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            margin-top: 20px;
+            background: var(--orange);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .reset-btn {
+            background: #777;
+        }
+
+        .result {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--gray-azure);
+        }
+
+        .badge {
+            font-size: 2rem;
+            margin-top: 15px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: var(--light-orange);
+            color: var(--gray-azure);
+            border-radius: 0 0 40px 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="fixed-nav">
+        <img src="assets/images/main_logo.png" alt="Logo" class="circular-logo" />
+        <nav>
+            <a href="tips.html">Tips</a>
+            <a href="challenges.html">Challenges</a>
+            <a href="quiz.html" style="color: var(--color-accent); font-weight: bold;">Quiz</a>
+            <a href="play.html">Play</a>
+            <a href="blog.html">Blog</a>
+            <a href="post-pressure.html">Post-Pressure</a>
+            <a href="scroll-tracker.html">Scroll Tracker</a>
+        </nav>
+        <div class="right-nav">
+            <a class="btn" href="play.html">Play Now</a>
+        </div>
+    </header>
+    <div class="hero">
+        <h1>🎯 Digital Balance Quiz</h1>
+        <p>Test your awareness about digital stress and habits</p>
+    </div>
+
+    <div class="quiz-container">
+        <form id="quizForm">
+            <!-- Question 1 -->
+            <div class="question">
+                <h3>1. When you're alone, do you reach for your phone to avoid your feelings?</h3>
+                <label><input type="radio" name="q1" value="yes" /> Yes, often</label>
+                <label><input type="radio" name="q1" value="sometimes" /> Sometimes</label>
+                <label><input type="radio" name="q1" value="no" /> No, I sit with my thoughts</label>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question">
+                <h3>2. How do you feel after scrolling through social media for a long time?</h3>
+                <label><input type="radio" name="q2" value="tired" /> Tired or emotionally drained</label>
+                <label><input type="radio" name="q2" value="okay" /> Just okay</label>
+                <label><input type="radio" name="q2" value="energized" /> Inspired and energized</label>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question">
+                <h3>3. Do you feel pressure to look or act a certain way online?</h3>
+                <label><input type="radio" name="q3" value="yes" /> Yes, I try to match others</label>
+                <label><input type="radio" name="q3" value="sometimes" /> Sometimes</label>
+                <label><input type="radio" name="q3" value="no" /> No, I feel free to be myself</label>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question">
+                <h3>4. Do you compare your life to what you see on other people's profiles?</h3>
+                <label><input type="radio" name="q4" value="often" /> Often</label>
+                <label><input type="radio" name="q4" value="rarely" /> Rarely</label>
+                <label><input type="radio" name="q4" value="never" /> Never</label>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question">
+                <h3>5. How does it feel when you don’t get likes or responses?</h3>
+                <label><input type="radio" name="q5" value="sad" /> I feel ignored or unimportant</label>
+                <label><input type="radio" name="q5" value="meh" /> I feel a little off</label>
+                <label><input type="radio" name="q5" value="fine" /> I'm okay with it</label>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question">
+                <h3>6. Do you ever wish you could take a break from it all?</h3>
+                <label><input type="radio" name="q6" value="yes" /> Yes, all the time</label>
+                <label><input type="radio" name="q6" value="sometimes" /> Sometimes</label>
+                <label><input type="radio" name="q6" value="no" /> No, I like being connected</label>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question">
+                <h3>7. How connected do you feel to real people outside the screen?</h3>
+                <label><input type="radio" name="q7" value="disconnected" /> A little disconnected</label>
+                <label><input type="radio" name="q7" value="somewhat" /> Somewhat connected</label>
+                <label><input type="radio" name="q7" value="very" /> Very connected</label>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="question">
+                <h3>8. When you're upset, what do you usually do?</h3>
+                <label><input type="radio" name="q8" value="scroll" /> Scroll to escape</label>
+                <label><input type="radio" name="q8" value="talk" /> Talk to someone I trust</label>
+                <label><input type="radio" name="q8" value="write" /> Write/journal or reflect quietly</label>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Quiz</button>
+            <button type="button" class="reset-btn" onclick="resetQuiz()">Reset Quiz</button>
+        </form>
+
+        <div class="result" id="resultBox"></div>
+
+        <script>
+            const form = document.getElementById('quizForm');
+            const resultBox = document.getElementById('resultBox');
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                let stressScore = 0;
+
+
+                const highStressValues = ['yes', 'tired', 'sad', 'often', 'scroll', 'disconnected'];
+                const mediumStressValues = ['sometimes', 'meh', 'rarely', 'somewhat'];
+
+                for (let i = 1; i <= 8; i++) {
+                    const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                    if (!selected) continue;
+
+                    const val = selected.value;
+
+                    if (highStressValues.includes(val)) {
+                        stressScore += 2;
+                    } else if (mediumStressValues.includes(val)) {
+                        stressScore += 1;
+                    } // low-stress values add 0
+                }
+
+                // Decide result
+                let resultMessage = '';
+                let quote = '';
+                let medal = '';
+
+                if (stressScore <= 5) {
+                    resultMessage = "🌿 You have a healthy digital balance. Keep reflecting and checking in with yourself.";
+                    quote = "“Peace begins when expectation ends.” – Sri Chinmoy";
+                    medal = "🥇 Gold – You're in control!";
+                } else if (stressScore <= 11) {
+                    resultMessage = "⏳ You're doing okay, but might benefit from more offline time.";
+                    quote = "“Almost everything will work again if you unplug it for a few minutes, including you.” – Anne Lamott";
+                    medal = "🥈 Silver – Be gentle with yourself.";
+                } else {
+                    resultMessage = "🚨 You're likely feeling digital stress. You deserve peace, rest, and real connection.";
+                    quote = "“You don't have to be available to everyone all the time.”";
+                    medal = "🥉 Bronze – Time to reconnect with yourself.";
+                }
+
+                // Output result
+                resultBox.innerHTML = `
+            ✅ <strong>Your Score: ${stressScore}/16</strong><br>
+            <div class="badge">${medal}</div>
+            <p>${resultMessage}</p>
+            <blockquote style="margin-top: 10px; font-style: italic; color: #555;">${quote}</blockquote>
+            <p style="margin-top:20px;"><a href="blog.html" style="color: var(--orange); font-weight: bold;">Explore stories & tips to help you</a></p>
+        `;
+            });
+
+            function resetQuiz() {
+                form.reset();
+                resultBox.innerHTML = '';
+            }
+        </script>
+
+</body>
+
+</html>

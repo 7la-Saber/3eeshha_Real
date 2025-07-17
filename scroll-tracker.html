@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scroll Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--very-light-orange);
+            margin: 0;
+            padding: 0;
+        }
+
+
+
+        .hero {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: var(--light-orange);
+            color: var(--gray-azure);
+            border-radius: 0 0 40px 40px;
+        }
+
+        main {
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            background: var(--orange);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            margin: 10px auto;
+            display: block;
+        }
+
+        .btn:hover {
+            background: #c6532f;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .result {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--gray-azure);
+            text-align: center;
+        }
+
+        label {
+            font-weight: 500;
+            margin-bottom: 10px;
+            display: block;
+            color: var(--gray-azure);
+        }
+
+        .option-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            text-align: left;
+            margin-top: 10px;
+        }
+
+        .result-group {
+            margin-bottom: 30px;
+            width: 100%;
+        }
+
+        .mood-suggestion {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+        }
+
+        .quote {
+            font-style: italic;
+            margin-top: 10px;
+            color: #555;
+            text-align: center;
+        }
+
+        #timerDisplay {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--gray-azure);
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="assets/images/main_logo.png" alt="Logo" class="circular-logo">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="tips.html">Tips</a>
+            <a href="challenges.html">Challenges</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="play.html">Play</a>
+            <a href="blog.html">Blog</a>
+            <a href="post-pressure.html">Post-Pressure</a>
+            <a href="scroll-tracker.html" style="color: var(--color-accent); font-weight: bold;">Scroll Tracker</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>📱 Scroll Tracker</h1>
+        <p>Start scrolling mindfully, reflect honestly 💭</p>
+    </section>
+
+    <main>
+        <!-- Timer -->
+        <div id="timerSection">
+            <button class="btn" onclick="startTimer()" id="startBtn">Start Scrolling</button>
+            <button class="btn hidden" onclick="stopTimer()" id="stopBtn">Stop</button>
+            <div id="timerDisplay" class="hidden">⏱ Time: 0m 0s</div>
+        </div>
+
+        <!-- Result Section -->
+        <div id="resultSection" class="hidden">
+            <!-- This will show the final stopped time above questions -->
+            <p id="stoppedTime" class="result"></p>
+
+            <div class="result-group">
+                <label>💭 How do you feel right now?</label>
+                <div class="option-group">
+                    <label><input type="radio" name="feeling" value="relaxed" /> Relaxed or peaceful</label>
+                    <label><input type="radio" name="feeling" value="tired" /> Tired or unfocused</label>
+                    <label><input type="radio" name="feeling" value="guilty" /> Guilty or wasted time</label>
+                    <label><input type="radio" name="feeling" value="neutral" /> Just okay, not sure</label>
+                </div>
+            </div>
+
+            <div class="result-group">
+                <label>⏰ Was it worth the time?</label>
+                <div class="option-group">
+                    <label><input type="radio" name="worth" value="yes" /> Yes – I needed a break</label>
+                    <label><input type="radio" name="worth" value="no" /> Not really – I could’ve done something
+                        else</label>
+                </div>
+            </div>
+
+            <button class="btn" onclick="analyzeReflection()">Submit Reflection</button>
+
+            <div class="mood-suggestion hidden" id="moodSuggestion"></div>
+            <div class="quote hidden" id="moodQuote"></div>
+            <div class="mood-suggestion hidden" id="feedbackSection"></div>
+        </div>
+    </main>
+
+    <footer>
+        <div>&copy; 2025 3esha Real. Built by teens, for teens. Less scrolling, more joy.</div>
+        <div class="footer-menu">
+            <a href="#">Home</a>
+            <a href="#">Explore</a>
+            <a href="#">Contact</a>
+        </div>
+        <div class="socials">
+            <button><i class="fab fa-facebook-f"></i></button>
+            <button><i class="fab fa-instagram"></i></button>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        let startTime;
+        let timerInterval;
+
+        function startTimer() {
+            startTime = Date.now();
+            const timerDisplay = document.getElementById("timerDisplay");
+
+            document.getElementById("stopBtn").classList.remove("hidden");
+            document.getElementById("startBtn").classList.add("hidden");
+
+            timerDisplay.classList.remove("hidden");
+            timerDisplay.textContent = "⏳ Scrolling time: 0m 0s";
+
+            timerInterval = setInterval(() => {
+                const now = Date.now();
+                const elapsed = now - startTime;
+                const minutes = Math.floor(elapsed / 60000);
+                const seconds = Math.floor((elapsed % 60000) / 1000);
+                timerDisplay.textContent = `⏳ Scrolling time: ${minutes}m ${seconds}s`;
+            }, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+
+            const endTime = Date.now();
+            const totalTime = endTime - startTime;
+            const minutes = Math.floor(totalTime / 60000);
+            const seconds = Math.floor((totalTime % 60000) / 1000);
+
+            const timeText = `✅ You scrolled for ${minutes} minute(s) and ${seconds} second(s).`;
+
+            document.getElementById("timerDisplay").textContent = timeText;
+            document.getElementById("stoppedTime").textContent = timeText;
+
+            document.getElementById("timerSection").classList.add("hidden");
+            document.getElementById("resultSection").classList.remove("hidden");
+        }
+
+        function analyzeReflection() {
+            const feelingInput = document.querySelector('input[name="feeling"]:checked');
+            const worthInput = document.querySelector('input[name="worth"]:checked');
+
+            if (!feelingInput || !worthInput) {
+                alert("Please answer both questions.");
+                return;
+            }
+
+            const feeling = feelingInput.value;
+            const worth = worthInput.value;
+
+            const moodSuggestion = document.getElementById("moodSuggestion");
+            const moodQuote = document.getElementById("moodQuote");
+            const feedbackBox = document.getElementById("feedbackSection");
+
+            if (feeling === "relaxed") {
+                moodSuggestion.textContent = "✨ You found peace – maybe journaling or drawing would deepen it.";
+                moodQuote.textContent = "“Almost everything will work again if you unplug it for a few minutes... including you.” – Anne Lamott";
+            } else if (feeling === "tired") {
+                moodSuggestion.textContent = "😴 Try a walk, stretch, or 5 mins of stillness to restore energy.";
+                moodQuote.textContent = "“You owe yourself the love that you so freely give to others.”";
+            } else if (feeling === "guilty") {
+                moodSuggestion.textContent = "💡 Don’t beat yourself up – your awareness is the first win.";
+                moodQuote.textContent = "“Be kind to yourself. You are doing the best you can.”";
+            } else {
+                moodSuggestion.textContent = "🌀 It’s okay to feel unsure – a short offline activity may help clarify.";
+                moodQuote.textContent = "“Your worth is not measured in likes or scroll time.”";
+            }
+
+            moodSuggestion.classList.remove("hidden");
+            moodQuote.classList.remove("hidden");
+
+            feedbackBox.textContent = (worth === "yes")
+                ? "✅ Great! It sounds like your scrolling served a purpose today."
+                : "⚠️ Next time, try setting a timer or planning a better break.";
+
+            feedbackBox.classList.remove("hidden");
+        }
+    </script>
+</body>
+
+</html>
